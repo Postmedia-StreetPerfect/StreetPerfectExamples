@@ -35,14 +35,21 @@ namespace WinFormsApp
 
         private async Task GetInfo()
         {
-            var info = await _client.GetInfo();
-            this.spInfo.Text = "";
-            foreach (var line in info.info)
+            try
             {
-                this.spInfo.Text += $"{line}\r\n";
+                var info = await _client.GetInfo();
+                this.spInfo.Text = "";
+                foreach (var line in info.info)
+                {
+                    this.spInfo.Text += $"{line}\r\n";
+                }
+                this.spInfo.Text += $"status_flag: {info.status_flag}\r\n";
+                this.spInfo.Text += $"status_messages: {info.status_messages}\r\n";
             }
-            this.spInfo.Text += $"status_flag: {info.status_flag}\r\n";
-            this.spInfo.Text += $"status_messages: {info.status_messages}\r\n";
+            catch (Exception ex)
+            {
+                this.spInfo.Text = $"Error:\r\n{ex.Message}\r\n\r\nStack:\r\n{ex.StackTrace.ToString()}";
+            }
         }
 
 
@@ -62,11 +69,13 @@ namespace WinFormsApp
             this.test_button.Top = this.Height - 220;
 
             box_width = Width - 200;
+
             this.SearchCtrl.Width = box_width;
             this.StreetAddr.Width = box_width;
             this.City.Width = box_width;
             this.Prov.Width = box_width;
             this.PostalCode.Width = box_width;
+            this.msgBox.Width = box_width;
         }
 
 
@@ -119,10 +128,24 @@ namespace WinFormsApp
                 SearchCtrl.SelectionStart = _searchText.Length;
                 Cursor.Current = Cursors.Default;
 
+                this.msgBox.Text = 
+$"""
+Response:
+status_flag={qresp.status_flag}
+status_messages={qresp.status_messages}
+addr_num={qresp.addr_num}
+unit_num={qresp.unit_num}
+suffix={qresp.suffix}
+start_rec={qresp.start_rec}
+count={qresp.count}
+total_hits={qresp.total_hits}
+t_exec_ms={qresp.t_exec_ms}
+""";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //_logger.LogCritical(ex, "{Path} error, {Message}, req= {@req}", Request.Path.Value.ToString(), ex.Message, req);
+                this.msgBox.Text = $"Error:\r\n{ex.Message}";
             }
 
         }
@@ -140,6 +163,7 @@ namespace WinFormsApp
                     autocorrect = true,
                     street_num = _lastTypeaheadResp.addr_num,
                     unit_num = _lastTypeaheadResp.unit_num,
+                    street_suffix = _lastTypeaheadResp.suffix,
                     return_components = true,
                     options = new Options()
                     {
@@ -165,7 +189,7 @@ namespace WinFormsApp
             City.Text = "";
             Prov.Text = "";
             PostalCode.Text = "";
-
+            msgBox.Text = "";
             SearchCtrl.Focus();
             SearchCtrl.SelectedIndex = -1;
         }

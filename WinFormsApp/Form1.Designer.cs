@@ -40,6 +40,8 @@
             label2 = new Label();
             label1 = new Label();
             tabPage2 = new TabPage();
+            msgBox = new TextBox();
+            label11 = new Label();
             clear_button = new Button();
             PostalCode = new TextBox();
             Prov = new TextBox();
@@ -65,7 +67,7 @@
             tabControl1.Margin = new Padding(2);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(675, 431);
+            tabControl1.Size = new Size(584, 432);
             tabControl1.TabIndex = 0;
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
@@ -84,7 +86,7 @@
             tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(2);
-            tabPage1.Size = new Size(667, 403);
+            tabPage1.Size = new Size(576, 404);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Connection";
             tabPage1.UseVisualStyleBackColor = true;
@@ -183,6 +185,8 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(msgBox);
+            tabPage2.Controls.Add(label11);
             tabPage2.Controls.Add(clear_button);
             tabPage2.Controls.Add(PostalCode);
             tabPage2.Controls.Add(Prov);
@@ -198,14 +202,34 @@
             tabPage2.Margin = new Padding(2);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(2);
-            tabPage2.Size = new Size(667, 403);
+            tabPage2.Size = new Size(576, 404);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Typeahead";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // msgBox
+            // 
+            msgBox.Location = new Point(99, 17);
+            msgBox.Multiline = true;
+            msgBox.Name = "msgBox";
+            msgBox.ReadOnly = true;
+            msgBox.ScrollBars = ScrollBars.Both;
+            msgBox.Size = new Size(447, 165);
+            msgBox.TabIndex = 9;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.ImageAlign = ContentAlignment.TopRight;
+            label11.Location = new Point(60, 20);
+            label11.Name = "label11";
+            label11.Size = new Size(33, 15);
+            label11.TabIndex = 8;
+            label11.Text = "Msg:";
+            // 
             // clear_button
             // 
-            clear_button.Location = new Point(95, 209);
+            clear_button.Location = new Point(98, 372);
             clear_button.Name = "clear_button";
             clear_button.Size = new Size(75, 23);
             clear_button.TabIndex = 7;
@@ -215,28 +239,28 @@
             // 
             // PostalCode
             // 
-            PostalCode.Location = new Point(93, 163);
+            PostalCode.Location = new Point(99, 338);
             PostalCode.Name = "PostalCode";
             PostalCode.Size = new Size(447, 23);
             PostalCode.TabIndex = 6;
             // 
             // Prov
             // 
-            Prov.Location = new Point(93, 131);
+            Prov.Location = new Point(99, 306);
             Prov.Name = "Prov";
             Prov.Size = new Size(447, 23);
             Prov.TabIndex = 6;
             // 
             // City
             // 
-            City.Location = new Point(93, 99);
+            City.Location = new Point(99, 274);
             City.Name = "City";
             City.Size = new Size(447, 23);
             City.TabIndex = 6;
             // 
             // StreetAddr
             // 
-            StreetAddr.Location = new Point(93, 67);
+            StreetAddr.Location = new Point(99, 242);
             StreetAddr.Name = "StreetAddr";
             StreetAddr.Size = new Size(447, 23);
             StreetAddr.TabIndex = 6;
@@ -245,7 +269,7 @@
             // 
             label9.AutoSize = true;
             label9.ImageAlign = ContentAlignment.TopRight;
-            label9.Location = new Point(15, 166);
+            label9.Location = new Point(21, 341);
             label9.Name = "label9";
             label9.Size = new Size(73, 15);
             label9.TabIndex = 5;
@@ -255,7 +279,7 @@
             // 
             label8.AutoSize = true;
             label8.ImageAlign = ContentAlignment.TopRight;
-            label8.Location = new Point(53, 134);
+            label8.Location = new Point(59, 309);
             label8.Name = "label8";
             label8.Size = new Size(34, 15);
             label8.TabIndex = 4;
@@ -265,7 +289,7 @@
             // 
             label7.AutoSize = true;
             label7.ImageAlign = ContentAlignment.TopRight;
-            label7.Location = new Point(56, 102);
+            label7.Location = new Point(62, 277);
             label7.Name = "label7";
             label7.Size = new Size(31, 15);
             label7.TabIndex = 3;
@@ -275,7 +299,7 @@
             // 
             label6.AutoSize = true;
             label6.ImageAlign = ContentAlignment.TopRight;
-            label6.Location = new Point(19, 70);
+            label6.Location = new Point(25, 245);
             label6.Name = "label6";
             label6.Size = new Size(69, 15);
             label6.TabIndex = 2;
@@ -284,7 +308,7 @@
             // SearchCtrl
             // 
             SearchCtrl.FormattingEnabled = true;
-            SearchCtrl.Location = new Point(94, 24);
+            SearchCtrl.Location = new Point(100, 199);
             SearchCtrl.Name = "SearchCtrl";
             SearchCtrl.Size = new Size(446, 23);
             SearchCtrl.TabIndex = 1;
@@ -295,7 +319,7 @@
             // 
             label5.AutoSize = true;
             label5.ImageAlign = ContentAlignment.TopRight;
-            label5.Location = new Point(43, 27);
+            label5.Location = new Point(49, 202);
             label5.Name = "label5";
             label5.Size = new Size(45, 15);
             label5.TabIndex = 0;
@@ -315,7 +339,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(670, 463);
+            ClientSize = new Size(569, 462);
             Controls.Add(label10);
             Controls.Add(tabControl1);
             Margin = new Padding(2);
@@ -357,5 +381,7 @@
         private TextBox StreetAddr;
         private Button clear_button;
         private Label label10;
+        private TextBox msgBox;
+        private Label label11;
     }
 }

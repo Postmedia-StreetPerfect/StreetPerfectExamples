@@ -10,9 +10,12 @@
 	  <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
   </PropertyGroup>
 
-  <Import Project="..\StreetPerfectClientModels\StreetPerfectClientModels.projitems" Label="Shared" />
+  <ItemGroup>
+    <Compile Remove="publish\**" />
+    <EmbeddedResource Remove="publish\**" />
+    <None Remove="publish\**" />
+  </ItemGroup>
 
-  <Import Project="..\StreetPerfectHttpClient\StreetPerfectHttpClient.projitems" Label="Shared" />
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
@@ -20,5 +23,10 @@
     <PackageReference Include="Refit" Version="7.0.0" />
     <PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
   </ItemGroup>
+
+
+  <Import Project="..\StreetPerfectHttpClientNet\StreetPerfectHttpClient.projitems" Label="Shared" />
+
+  <Import Project="..\StreetPerfectClientModelsNet\StreetPerfectClientModels.projitems" Label="Shared" />
 
 </Project>
