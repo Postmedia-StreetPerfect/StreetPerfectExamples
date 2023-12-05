@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+	  <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+  </PropertyGroup>
+
+  <Import Project="..\StreetPerfectClientModels\StreetPerfectClientModels.projitems" Label="Shared" />
+
+  <Import Project="..\StreetPerfectHttpClient\StreetPerfectHttpClient.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Refit" Version="7.0.0" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
+  </ItemGroup>
+
+</Project>

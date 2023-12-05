@@ -1,0 +1,12 @@
+[submodule "StreetPerfectClientNet"]
+	path = StreetPerfectClientNet
+	url = https://github.com/Postmedia-StreetPerfect/StreetPerfectClientNet.git
+[submodule "StreetPerfectPython"]
+	path = StreetPerfectPython
+	url = https://github.com/Postmedia-StreetPerfect/StreetPerfectPython.git
+[submodule "StreetPerfectClientModelsNet"]
+	path = StreetPerfectClientModelsNet
+	url = https://github.com/Postmedia-StreetPerfect/StreetPerfectClientModelsNet.git
+[submodule "StreetPerfectHttpClientNet"]
+	path = StreetPerfectHttpClientNet
+	url = https://github.com/Postmedia-StreetPerfect/StreetPerfectHttpClientNet.git
