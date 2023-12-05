@@ -8,12 +8,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	  <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 	  <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+	  <UserSecretsId>f88d1785-06c2-4cce-bb80-b1d1b1cbac1e</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="publish\**" />
     <EmbeddedResource Remove="publish\**" />
     <None Remove="publish\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Program - Copy.cs" />
   </ItemGroup>
 
 

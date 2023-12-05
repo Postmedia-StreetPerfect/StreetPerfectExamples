@@ -1,7 +1,6 @@
 using StreetPerfect.Http;
 using StreetPerfect.Models;
 using System.Configuration;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -11,19 +10,17 @@ namespace WinFormsApp
     {
         private string _searchText { get; set; } = "";
         private caTypeaheadResponse _lastTypeaheadResp { get; set; }
-
         private readonly IStreetPerfectHttpClient _client;
-        private readonly BindingSource _bindingSource = new BindingSource();
+
         public Form1(IStreetPerfectHttpClient client)
         {
-            InitializeComponent();
             _client = client;
+            InitializeComponent();
             ResizeTabCtrl();
 
-            this.clientId.Text = ConfigurationManager.AppSettings["sp_ClientId"];
-            this.clientSecret.Text = ConfigurationManager.AppSettings["sp_ClientSecret"];
-            this.baseAddr.Text = ConfigurationManager.AppSettings["sp_BaseAddress"];
-
+            clientId.Text = ConfigurationManager.AppSettings["sp_ClientId"];
+            clientSecret.Text = ConfigurationManager.AppSettings["sp_ClientSecret"];
+            baseAddr.Text = ConfigurationManager.AppSettings["sp_BaseAddress"];
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -38,44 +35,44 @@ namespace WinFormsApp
             try
             {
                 var info = await _client.GetInfo();
-                this.spInfo.Text = "";
+                spInfo.Text = "";
                 foreach (var line in info.info)
                 {
-                    this.spInfo.Text += $"{line}\r\n";
+                    spInfo.Text += $"{line}\r\n";
                 }
-                this.spInfo.Text += $"status_flag: {info.status_flag}\r\n";
-                this.spInfo.Text += $"status_messages: {info.status_messages}\r\n";
+                spInfo.Text += $"status_flag: {info.status_flag}\r\n";
+                spInfo.Text += $"status_messages: {info.status_messages}\r\n";
             }
             catch (Exception ex)
             {
-                this.spInfo.Text = $"Error:\r\n{ex.Message}\r\n\r\nStack:\r\n{ex.StackTrace.ToString()}";
+                spInfo.Text = $"Error:\r\n{ex.Message}\r\n\r\nStack:\r\n{ex.StackTrace.ToString()}";
             }
         }
 
 
         private void ResizeTabCtrl()
         {
-            this.tabControl1.Width = this.Width;
-            this.tabControl1.Height = this.Height - 60;
+            tabControl1.Width = Width;
+            tabControl1.Height = Height - 60;
 
-            var box_width = this.Width - 220;
+            var box_width = Width - 220;
 
-            this.baseAddr.Width = box_width;
-            this.clientId.Width = box_width;
-            this.clientSecret.Width = box_width;
+            baseAddr.Width = box_width;
+            clientId.Width = box_width;
+            clientSecret.Width = box_width;
 
-            this.spInfo.Width = box_width;
-            this.spInfo.Height = this.Height - 410;
-            this.test_button.Top = this.Height - 220;
+            spInfo.Width = box_width;
+            spInfo.Height = Height - 410;
+            test_button.Top = Height - 220;
 
             box_width = Width - 200;
 
-            this.SearchCtrl.Width = box_width;
-            this.StreetAddr.Width = box_width;
-            this.City.Width = box_width;
-            this.Prov.Width = box_width;
-            this.PostalCode.Width = box_width;
-            this.msgBox.Width = box_width;
+            SearchCtrl.Width = box_width;
+            StreetAddr.Width = box_width;
+            City.Width = box_width;
+            Prov.Width = box_width;
+            PostalCode.Width = box_width;
+            msgBox.Width = box_width;
         }
 
 
@@ -128,7 +125,7 @@ namespace WinFormsApp
                 SearchCtrl.SelectionStart = _searchText.Length;
                 Cursor.Current = Cursors.Default;
 
-                this.msgBox.Text = 
+                msgBox.Text = 
 $"""
 Response:
 status_flag={qresp.status_flag}
@@ -145,7 +142,7 @@ t_exec_ms={qresp.t_exec_ms}
             catch (Exception ex)
             {
                 //_logger.LogCritical(ex, "{Path} error, {Message}, req= {@req}", Request.Path.Value.ToString(), ex.Message, req);
-                this.msgBox.Text = $"Error:\r\n{ex.Message}";
+                msgBox.Text = $"Error:\r\n{ex.Message}";
             }
 
         }

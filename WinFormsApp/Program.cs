@@ -7,6 +7,7 @@ namespace WinFormsApp
 {
     internal static class Program
     {
+        //public static IServiceProvider ServiceProvider { get; private set; } // do we need this?
 
         /// <summary>
         ///  The main entry point for the application.
@@ -18,26 +19,25 @@ namespace WinFormsApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var host = CreateHostBuilder().Build();
-            ServiceProvider = host.Services;
-
-            Application.Run(ServiceProvider.GetRequiredService<Form1>());
-        }
-
-        public static IServiceProvider ServiceProvider { get; private set; }
-        static IHostBuilder CreateHostBuilder()
-        {
-            return Host.CreateDefaultBuilder()
-                .ConfigureServices((context, services) => {
-                    services.AddStreetPerfectClient(c =>
-                    {
-                        c.ClientId = ConfigurationManager.AppSettings["sp_ClientId"];
-                        c.ClientSecret = ConfigurationManager.AppSettings["sp_ClientSecret"];
-                        //can change
-                        //c.BaseAddress = ConfigurationManager.AppSettings["sp_BaseAddress"];
-                    });
-                    services.AddTransient<Form1>();
+            var builder = Host.CreateDefaultBuilder();
+            builder.ConfigureServices((context, services) =>
+            {
+                services.AddStreetPerfectClient(c =>
+                {
+                    c.ClientId = ConfigurationManager.AppSettings["sp_ClientId"];
+                    c.ClientSecret = ConfigurationManager.AppSettings["sp_ClientSecret"];
+                    //can change
+                    //c.BaseAddress = ConfigurationManager.AppSettings["sp_BaseAddress"];
                 });
+                services.AddTransient<Form1>();
+
+            });
+
+            var host = builder.Build();
+
+            Application.Run(host.Services.GetRequiredService<Form1>());
         }
+
+
     }
 }
